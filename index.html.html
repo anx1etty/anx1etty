@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anx1etty </title>
+    <title>anx1etty | Радужный сайт</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -191,6 +191,179 @@
             line-height: 1.5;
         }
 
+        /* Ссылки на соцсети */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .steam-link {
+            background: linear-gradient(90deg, #171a21, #66c0f4);
+        }
+
+        .telegram-link {
+            background: linear-gradient(90deg, #0088cc, #34b7f1);
+        }
+
+        .aboutme-link {
+            background: linear-gradient(90deg, #ff0080, #ff00ff);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .steam-link:hover {
+            background: linear-gradient(90deg, #66c0f4, #171a21);
+        }
+
+        .telegram-link:hover {
+            background: linear-gradient(90deg, #34b7f1, #0088cc);
+        }
+
+        .aboutme-link:hover {
+            background: linear-gradient(90deg, #ff00ff, #ff0080);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Виджеты (Telegram и Обо мне) */
+        .widgets-container {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .widget {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            max-width: 220px;
+        }
+
+        .widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .widget-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .widget-icon {
+            font-size: 1.8rem;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .telegram-icon {
+            background: linear-gradient(135deg, #0088cc, #34b7f1);
+        }
+
+        .aboutme-icon {
+            background: linear-gradient(135deg, #ff0080, #ff00ff);
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .widget-content {
+            font-size: 0.9rem;
+            text-align: center;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        .widget-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .widget-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .telegram-button {
+            background: linear-gradient(90deg, #0088cc, #34b7f1);
+        }
+
+        .aboutme-button {
+            background: linear-gradient(90deg, #ff0080, #ff00ff);
+        }
+
+        .widget-hint {
+            position: absolute;
+            left: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            opacity: 0;
+            width: 200px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .widget:hover .widget-hint {
+            opacity: 1;
+            left: calc(100% + 15px);
+        }
+
         /* Панель настроек */
         .settings-panel {
             position: fixed;
@@ -327,33 +500,6 @@
             transform: translateY(-2px);
         }
 
-        /* Ссылка на Steam */
-        .steam-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(90deg, #171a21, #66c0f4);
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .steam-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(90deg, #66c0f4, #171a21);
-        }
-
-        .steam-icon {
-            font-size: 1.5rem;
-        }
-
         /* Футер */
         .footer {
             text-align: center;
@@ -369,7 +515,7 @@
             margin-top: 20px;
         }
 
-        .social-icon {
+        .footer-icon {
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -383,12 +529,38 @@
             text-decoration: none;
         }
 
-        .social-icon:hover {
+        .footer-icon:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
         }
 
+        /* Контакты в секции "О себе" */
+        .contacts-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
         /* Адаптивность */
+        @media (max-width: 1100px) {
+            .widgets-container {
+                flex-direction: row;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+            }
+            
+            .widget {
+                max-width: 200px;
+            }
+            
+            .widget-hint {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .rainbow-nick {
                 font-size: 3rem;
@@ -413,10 +585,84 @@
                 left: 20px;
                 top: 90px;
             }
+            
+            .widgets-container {
+                flex-direction: column;
+                left: 20px;
+                transform: none;
+                width: calc(100% - 40px);
+                align-items: center;
+            }
+            
+            .widget {
+                max-width: 300px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .widgets-container {
+                left: 10px;
+                width: calc(100% - 20px);
+            }
+            
+            .widget {
+                max-width: 100%;
+            }
+            
+            .widget-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .widget-title {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Виджеты -->
+    <div class="widgets-container">
+        <!-- Виджет Telegram -->
+        <div class="widget">
+            <div class="widget-header">
+                <div class="widget-icon telegram-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <div class="widget-title">Telegram</div>
+            </div>
+            <div class="widget-content">
+                Напиши мне в Telegram для быстрой связи
+            </div>
+            <a href="https://t.me/dawow3" target="_blank" class="widget-button telegram-button">
+                @dawow3
+            </a>
+            <div class="widget-hint">
+                💬 Отвечаю быстро! Пиши по любым вопросам или просто поболтать 🚀
+            </div>
+        </div>
+
+        <!-- Виджет "Обо мне" -->
+        <div class="widget">
+            <div class="widget-header">
+                <div class="widget-icon aboutme-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="widget-title">Обо мне</div>
+            </div>
+            <div class="widget-content">
+                Узнай больше о моих увлечениях и проектах
+            </div>
+            <a href="https://anx1etty.github.io/anx1etty/aboutme/index.html" target="_blank" class="widget-button aboutme-button">
+                Перейти на сайт
+            </a>
+            <div class="widget-hint">
+                🌟 Мой персональный сайт с подробной информацией обо мне, моих проектах и увлечениях!
+            </div>
+        </div>
+    </div>
+
     <!-- Панель настроек -->
     <div class="settings-panel" id="settingsToggle">
         <div class="settings-icon">
@@ -472,9 +718,15 @@
             <p class="tagline">17 годиков | Любитель CS2 | Радужный мир</p>
             
             <!-- Ссылка на Steam аккаунт -->
-            <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="steam-link">
-                <i class="fab fa-steam steam-icon"></i>
+            <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="social-link steam-link">
+                <i class="fab fa-steam social-icon"></i>
                 Мой Steam аккаунт
+            </a>
+            
+            <!-- Ссылка на сайт "Обо мне" -->
+            <a href="https://anx1etty.github.io/anx1etty/aboutme/index.html" target="_blank" class="social-link aboutme-link" style="margin-left: 15px;">
+                <i class="fas fa-user-circle social-icon"></i>
+                Подробнее обо мне
             </a>
         </header>
 
@@ -506,6 +758,25 @@
                 </div>
                 <div class="info-text">
                     Мой стиль — это <span class="highlight">радуга во всём</span>: от игровых скинов до оформления соцсетей. Яркие цвета делают жизнь интереснее!
+                </div>
+            </div>
+            
+            <!-- Контакты -->
+            <div class="contacts-section">
+                <h3 class="section-title">Мои контакты и проекты</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                    <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="social-link steam-link">
+                        <i class="fab fa-steam social-icon"></i>
+                        Steam
+                    </a>
+                    <a href="https://t.me/dawow3" target="_blank" class="social-link telegram-link">
+                        <i class="fab fa-telegram social-icon"></i>
+                        Telegram @dawow3
+                    </a>
+                    <a href="https://anx1etty.github.io/anx1etty/aboutme/index.html" target="_blank" class="social-link aboutme-link">
+                        <i class="fas fa-user-circle social-icon"></i>
+                        Сайт "Обо мне"
+                    </a>
                 </div>
             </div>
         </section>
@@ -540,13 +811,13 @@
             
             <div class="cs2-card" style="grid-column: 1 / -1; max-width: 500px; margin: 0 auto;">
                 <div class="cs2-icon">
-                    <i class="fab fa-steam"></i>
+                    <i class="fas fa-globe"></i>
                 </div>
-                <h3 class="cs2-title">Добавь в друзья!</h3>
-                <p class="cs2-desc">Присоединяйся ко мне в Steam, чтобы вместе играть в CS2 и другие игры!</p>
-                <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="steam-link" style="margin-top: 15px;">
-                    <i class="fab fa-steam"></i>
-                    Перейти в мой профиль Steam
+                <h3 class="cs2-title">Больше информации</h3>
+                <p class="cs2-desc">Хочешь узнать больше обо мне и моих увлечениях? Посети мой сайт!</p>
+                <a href="https://anx1etty.github.io/anx1etty/aboutme/index.html" target="_blank" class="social-link aboutme-link" style="margin-top: 15px;">
+                    <i class="fas fa-user-circle"></i>
+                    Перейти на сайт "Обо мне"
                 </a>
             </div>
         </section>
@@ -557,19 +828,25 @@
             <p>Радужный мир начинается здесь!</p>
             
             <div class="social-icons">
-                <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="social-icon" title="Steam">
+                <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="footer-icon" title="Steam">
                     <i class="fab fa-steam"></i>
                 </a>
-                <a href="#" class="social-icon" title="Discord">
+                <a href="https://t.me/dawow3" target="_blank" class="footer-icon" title="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://anx1etty.github.io/anx1etty/aboutme/index.html" target="_blank" class="footer-icon" title="Сайт 'Обо мне'">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <a href="#" class="footer-icon" title="Discord">
                     <i class="fab fa-discord"></i>
                 </a>
-                <a href="#" class="social-icon" title="Twitch">
-                    <i class="fab fa-twitch"></i>
-                </a>
-                <a href="#" class="social-icon" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
             </div>
+            
+            <p style="margin-top: 20px; font-size: 1rem;">
+                <strong>Telegram:</strong> <a href="https://t.me/dawow3" target="_blank" style="color: #34b7f1; text-decoration: none;">@dawow3</a> • 
+                <strong>Steam:</strong> <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" style="color: #66c0f4; text-decoration: none;">anx1etty</a> • 
+                <strong>Сайт:</strong> <a href="https://anx1etty.github.io/anx1etty/aboutme/index.html" target="_blank" style="color: #ff00ff; text-decoration: none;">Обо мне</a>
+            </p>
         </footer>
     </div>
 
@@ -748,6 +1025,28 @@
             // Загружаем сохранённые настройки при загрузке страницы
             loadSettings();
             
+            // Анимация для виджетов
+            function animateWidgets() {
+                const widgets = document.querySelectorAll('.widget');
+                let delay = 0;
+                
+                widgets.forEach(widget => {
+                    widget.style.opacity = '0';
+                    widget.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        widget.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        widget.style.opacity = '1';
+                        widget.style.transform = 'translateY(0)';
+                    }, delay);
+                    
+                    delay += 200;
+                });
+            }
+            
+            // Запускаем анимацию виджетов
+            setTimeout(animateWidgets, 500);
+            
             // Эффекты для стеклянных панелей
             const glassPanels = document.querySelectorAll('.glass-panel');
             
@@ -784,9 +1083,12 @@
                 nickname.style.transform = 'translateY(0)';
             }, 300);
             
-            // Консольное сообщение с ссылкой на Steam
-            console.log('Привет, anx1etty! Радужный сайт загружен! 🌈');
-            console.log('Твой Steam профиль: https://steamcommunity.com/profiles/76561199816086960');
+            // Консольное сообщение с контактами
+            console.log('🌈 Привет, anx1etty! Радужный сайт загружен!');
+            console.log('🎮 Steam: https://steamcommunity.com/profiles/76561199816086960');
+            console.log('📱 Telegram: https://t.me/dawow3');
+            console.log('🌐 Сайт "Обо мне": https://anx1etty.github.io/anx1etty/aboutme/index.html');
+            console.log('💫 Напиши мне в Telegram - @dawow3!');
         });
     </script>
 </body>
