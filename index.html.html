@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anx1etty | Радужный сайт</title>
+    <title>anx1etty </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -13,20 +13,30 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        :root {
+            --primary-color: #ff0000;
+            --secondary-color: #00ff80;
+            --accent-color: #0080ff;
+            --bg-animation-speed: 15s;
+            --text-animation-speed: 8s;
+            --glass-opacity: 0.15;
+        }
+
         body {
             min-height: 100vh;
             background: linear-gradient(45deg, 
-                #ff0000, #ff8000, #ffff00, 
-                #80ff00, #00ff80, #00ffff, 
-                #0080ff, #8000ff, #ff00ff);
+                var(--primary-color), #ff8000, #ffff00, 
+                #80ff00, var(--secondary-color), #00ffff, 
+                var(--accent-color), #8000ff, #ff00ff);
             background-size: 400% 400%;
-            animation: rainbowBackground 15s ease infinite;
+            animation: rainbowBackground var(--bg-animation-speed) ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             color: #fff;
             overflow-x: hidden;
+            transition: background 0.5s ease;
         }
 
         @keyframes rainbowBackground {
@@ -37,7 +47,7 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -46,7 +56,7 @@
 
         /* Стеклянные панели */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, var(--glass-opacity));
             backdrop-filter: blur(10px);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -71,14 +81,14 @@
             font-size: 4.5rem;
             font-weight: 800;
             background: linear-gradient(90deg, 
-                #ff0000, #ff8000, #ffff00, 
-                #80ff00, #00ff80, #00ffff, 
-                #0080ff, #8000ff, #ff00ff);
+                var(--primary-color), #ff8000, #ffff00, 
+                #80ff00, var(--secondary-color), #00ffff, 
+                var(--accent-color), #8000ff, #ff00ff);
             background-size: 400% 400%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: rainbowText 8s linear infinite;
+            animation: rainbowText var(--text-animation-speed) linear infinite;
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
             margin-bottom: 20px;
         }
@@ -181,6 +191,169 @@
             line-height: 1.5;
         }
 
+        /* Панель настроек */
+        .settings-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .settings-panel:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+        }
+
+        .settings-icon {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .settings-menu {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+
+        .settings-menu.active {
+            display: block;
+        }
+
+        .settings-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            text-align: center;
+        }
+
+        .settings-group {
+            margin-bottom: 20px;
+        }
+
+        .settings-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .color-option.active {
+            border-color: white;
+            transform: scale(1.1);
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .slider {
+            flex-grow: 1;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            border: 2px solid white;
+        }
+
+        .reset-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .reset-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Ссылка на Steam */
+        .steam-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, #171a21, #66c0f4);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .steam-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(90deg, #66c0f4, #171a21);
+        }
+
+        .steam-icon {
+            font-size: 1.5rem;
+        }
+
         /* Футер */
         .footer {
             text-align: center;
@@ -233,15 +406,76 @@
             .cs2-section {
                 grid-template-columns: 1fr;
             }
+            
+            .settings-menu {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                top: 90px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Панель настроек -->
+    <div class="settings-panel" id="settingsToggle">
+        <div class="settings-icon">
+            <i class="fas fa-sliders-h"></i>
+        </div>
+    </div>
+
+    <div class="settings-menu" id="settingsMenu">
+        <h3 class="settings-title">Настройки сайта</h3>
+        
+        <div class="settings-group">
+            <label class="settings-label">Цветовая гамма:</label>
+            <div class="color-picker">
+                <div class="color-option active" data-preset="rainbow" style="background: linear-gradient(45deg, #ff0000, #00ff80, #0080ff);"></div>
+                <div class="color-option" data-preset="fire" style="background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00);"></div>
+                <div class="color-option" data-preset="ocean" style="background: linear-gradient(45deg, #0080ff, #00ffff, #00ff80);"></div>
+                <div class="color-option" data-preset="neon" style="background: linear-gradient(45deg, #ff00ff, #8000ff, #00ffff);"></div>
+                <div class="color-option" data-preset="forest" style="background: linear-gradient(45deg, #00ff80, #80ff00, #ffff00);"></div>
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <label class="settings-label">Скорость анимации фона:</label>
+            <div class="slider-container">
+                <span class="slider-value" id="bgSpeedValue">15с</span>
+                <input type="range" min="5" max="30" value="15" class="slider" id="bgSpeedSlider">
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <label class="settings-label">Скорость анимации текста:</label>
+            <div class="slider-container">
+                <span class="slider-value" id="textSpeedValue">8с</span>
+                <input type="range" min="3" max="20" value="8" class="slider" id="textSpeedSlider">
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <label class="settings-label">Прозрачность панелей:</label>
+            <div class="slider-container">
+                <span class="slider-value" id="opacityValue">15%</span>
+                <input type="range" min="5" max="30" value="15" class="slider" id="opacitySlider">
+            </div>
+        </div>
+        
+        <button class="reset-btn" id="resetSettings">Сбросить настройки</button>
+    </div>
+
     <div class="container">
         <!-- Заголовок с радужным ником -->
         <header class="glass-panel header">
             <h1 class="rainbow-nick">anx1etty</h1>
             <p class="tagline">17 годиков | Любитель CS2 | Радужный мир</p>
+            
+            <!-- Ссылка на Steam аккаунт -->
+            <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="steam-link">
+                <i class="fab fa-steam steam-icon"></i>
+                Мой Steam аккаунт
+            </a>
         </header>
 
         <!-- Секция "О себе" -->
@@ -303,6 +537,18 @@
                 <h3 class="cs2-title">Достижения</h3>
                 <p class="cs2-desc">Упорно стремлюсь повышать свой ранг и совершенствовать навыки игры.</p>
             </div>
+            
+            <div class="cs2-card" style="grid-column: 1 / -1; max-width: 500px; margin: 0 auto;">
+                <div class="cs2-icon">
+                    <i class="fab fa-steam"></i>
+                </div>
+                <h3 class="cs2-title">Добавь в друзья!</h3>
+                <p class="cs2-desc">Присоединяйся ко мне в Steam, чтобы вместе играть в CS2 и другие игры!</p>
+                <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="steam-link" style="margin-top: 15px;">
+                    <i class="fab fa-steam"></i>
+                    Перейти в мой профиль Steam
+                </a>
+            </div>
         </section>
 
         <!-- Футер -->
@@ -311,16 +557,16 @@
             <p>Радужный мир начинается здесь!</p>
             
             <div class="social-icons">
-                <a href="#" class="social-icon">
+                <a href="https://steamcommunity.com/profiles/76561199816086960" target="_blank" class="social-icon" title="Steam">
                     <i class="fab fa-steam"></i>
                 </a>
-                <a href="#" class="social-icon">
+                <a href="#" class="social-icon" title="Discord">
                     <i class="fab fa-discord"></i>
                 </a>
-                <a href="#" class="social-icon">
+                <a href="#" class="social-icon" title="Twitch">
                     <i class="fab fa-twitch"></i>
                 </a>
-                <a href="#" class="social-icon">
+                <a href="#" class="social-icon" title="YouTube">
                     <i class="fab fa-youtube"></i>
                 </a>
             </div>
@@ -328,12 +574,184 @@
     </div>
 
     <script>
-        // Добавляем интерактивности для стеклянных панелей
         document.addEventListener('DOMContentLoaded', function() {
+            // Элементы настроек
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsMenu = document.getElementById('settingsMenu');
+            const bgSpeedSlider = document.getElementById('bgSpeedSlider');
+            const bgSpeedValue = document.getElementById('bgSpeedValue');
+            const textSpeedSlider = document.getElementById('textSpeedSlider');
+            const textSpeedValue = document.getElementById('textSpeedValue');
+            const opacitySlider = document.getElementById('opacitySlider');
+            const opacityValue = document.getElementById('opacityValue');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const resetBtn = document.getElementById('resetSettings');
+            
+            // Переменные для хранения настроек
+            let currentPreset = 'rainbow';
+            
+            // Открытие/закрытие меню настроек
+            settingsToggle.addEventListener('click', function(e) {
+                settingsMenu.classList.toggle('active');
+                e.stopPropagation();
+            });
+            
+            // Закрытие меню при клике вне его
+            document.addEventListener('click', function(e) {
+                if (!settingsMenu.contains(e.target) && !settingsToggle.contains(e.target)) {
+                    settingsMenu.classList.remove('active');
+                }
+            });
+            
+            // Настройки цветовой гаммы
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Удаляем активный класс у всех опций
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    // Добавляем активный класс выбранной опции
+                    this.classList.add('active');
+                    
+                    // Получаем пресет
+                    currentPreset = this.getAttribute('data-preset');
+                    
+                    // Применяем выбранную цветовую гамму
+                    applyColorPreset(currentPreset);
+                });
+            });
+            
+            // Функция применения цветового пресета
+            function applyColorPreset(preset) {
+                let primary, secondary, accent;
+                
+                switch(preset) {
+                    case 'rainbow':
+                        primary = '#ff0000';
+                        secondary = '#00ff80';
+                        accent = '#0080ff';
+                        break;
+                    case 'fire':
+                        primary = '#ff0000';
+                        secondary = '#ff8000';
+                        accent = '#ffff00';
+                        break;
+                    case 'ocean':
+                        primary = '#0080ff';
+                        secondary = '#00ffff';
+                        accent = '#00ff80';
+                        break;
+                    case 'neon':
+                        primary = '#ff00ff';
+                        secondary = '#8000ff';
+                        accent = '#00ffff';
+                        break;
+                    case 'forest':
+                        primary = '#00ff80';
+                        secondary = '#80ff00';
+                        accent = '#ffff00';
+                        break;
+                }
+                
+                // Применяем цвета к CSS переменным
+                document.documentElement.style.setProperty('--primary-color', primary);
+                document.documentElement.style.setProperty('--secondary-color', secondary);
+                document.documentElement.style.setProperty('--accent-color', accent);
+                
+                // Сохраняем настройки в localStorage
+                saveSettings();
+            }
+            
+            // Настройка скорости анимации фона
+            bgSpeedSlider.addEventListener('input', function() {
+                const value = this.value;
+                bgSpeedValue.textContent = value + 'с';
+                document.documentElement.style.setProperty('--bg-animation-speed', value + 's');
+                saveSettings();
+            });
+            
+            // Настройка скорости анимации текста
+            textSpeedSlider.addEventListener('input', function() {
+                const value = this.value;
+                textSpeedValue.textContent = value + 'с';
+                document.documentElement.style.setProperty('--text-animation-speed', value + 's');
+                saveSettings();
+            });
+            
+            // Настройка прозрачности панелей
+            opacitySlider.addEventListener('input', function() {
+                const value = this.value;
+                opacityValue.textContent = value + '%';
+                document.documentElement.style.setProperty('--glass-opacity', value/100);
+                saveSettings();
+            });
+            
+            // Сброс настроек
+            resetBtn.addEventListener('click', function() {
+                // Сбрасываем слайдеры
+                bgSpeedSlider.value = 15;
+                bgSpeedValue.textContent = '15с';
+                document.documentElement.style.setProperty('--bg-animation-speed', '15s');
+                
+                textSpeedSlider.value = 8;
+                textSpeedValue.textContent = '8с';
+                document.documentElement.style.setProperty('--text-animation-speed', '8s');
+                
+                opacitySlider.value = 15;
+                opacityValue.textContent = '15%';
+                document.documentElement.style.setProperty('--glass-opacity', '0.15');
+                
+                // Сбрасываем цветовую гамму
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                document.querySelector('.color-option[data-preset="rainbow"]').classList.add('active');
+                applyColorPreset('rainbow');
+                
+                // Удаляем настройки из localStorage
+                localStorage.removeItem('anx1ettySiteSettings');
+            });
+            
+            // Сохранение настроек в localStorage
+            function saveSettings() {
+                const settings = {
+                    preset: currentPreset,
+                    bgSpeed: bgSpeedSlider.value,
+                    textSpeed: textSpeedSlider.value,
+                    opacity: opacitySlider.value
+                };
+                localStorage.setItem('anx1ettySiteSettings', JSON.stringify(settings));
+            }
+            
+            // Загрузка сохранённых настроек
+            function loadSettings() {
+                const savedSettings = localStorage.getItem('anx1ettySiteSettings');
+                if (savedSettings) {
+                    const settings = JSON.parse(savedSettings);
+                    
+                    // Применяем сохранённые настройки
+                    bgSpeedSlider.value = settings.bgSpeed;
+                    bgSpeedValue.textContent = settings.bgSpeed + 'с';
+                    document.documentElement.style.setProperty('--bg-animation-speed', settings.bgSpeed + 's');
+                    
+                    textSpeedSlider.value = settings.textSpeed;
+                    textSpeedValue.textContent = settings.textSpeed + 'с';
+                    document.documentElement.style.setProperty('--text-animation-speed', settings.textSpeed + 's');
+                    
+                    opacitySlider.value = settings.opacity;
+                    opacityValue.textContent = settings.opacity + '%';
+                    document.documentElement.style.setProperty('--glass-opacity', settings.opacity/100);
+                    
+                    // Применяем сохранённую цветовую гамму
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    document.querySelector(`.color-option[data-preset="${settings.preset}"]`).classList.add('active');
+                    applyColorPreset(settings.preset);
+                }
+            }
+            
+            // Загружаем сохранённые настройки при загрузке страницы
+            loadSettings();
+            
+            // Эффекты для стеклянных панелей
             const glassPanels = document.querySelectorAll('.glass-panel');
             
             glassPanels.forEach(panel => {
-                // Добавляем эффект параллакса при движении мыши
                 panel.addEventListener('mousemove', (e) => {
                     const x = e.pageX - panel.offsetLeft;
                     const y = e.pageY - panel.offsetTop;
@@ -350,7 +768,6 @@
                     `;
                 });
                 
-                // Возвращаем тень при уходе мыши
                 panel.addEventListener('mouseleave', () => {
                     panel.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
                 });
@@ -367,8 +784,9 @@
                 nickname.style.transform = 'translateY(0)';
             }, 300);
             
-            // Консольное сообщение
+            // Консольное сообщение с ссылкой на Steam
             console.log('Привет, anx1etty! Радужный сайт загружен! 🌈');
+            console.log('Твой Steam профиль: https://steamcommunity.com/profiles/76561199816086960');
         });
     </script>
 </body>
