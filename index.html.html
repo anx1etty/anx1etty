@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anx1etty | Радужный сайт</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, 
+                #ff0000, #ff8000, #ffff00, 
+                #80ff00, #00ff80, #00ffff, 
+                #0080ff, #8000ff, #ff00ff);
+            background-size: 400% 400%;
+            animation: rainbowBackground 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        @keyframes rainbowBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Стеклянные панели */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Заголовок с радужным ником */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .rainbow-nick {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, 
+                #ff0000, #ff8000, #ffff00, 
+                #80ff00, #00ff80, #00ffff, 
+                #0080ff, #8000ff, #ff00ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbowText 8s linear infinite;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        @keyframes rainbowText {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        /* Секции */
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .info-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #ffeb3b;
+            font-weight: bold;
+        }
+
+        /* CS2 секция */
+        .cs2-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .cs2-card {
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .cs2-card:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: scale(1.03);
+        }
+
+        .cs2-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ff5722;
+        }
+
+        .cs2-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #4fc3f7;
+        }
+
+        .cs2-desc {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        /* Футер */
+        .footer {
+            text-align: center;
+            padding: 25px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .rainbow-nick {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .info-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cs2-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Заголовок с радужным ником -->
+        <header class="glass-panel header">
+            <h1 class="rainbow-nick">anx1etty</h1>
+            <p class="tagline">17 годиков | Любитель CS2 | Радужный мир</p>
+        </header>
+
+        <!-- Секция "О себе" -->
+        <section class="glass-panel about-section">
+            <h2 class="section-title">О себе</h2>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="info-text">
+                    Мне <span class="highlight">17 годиков</span>, живу в своём ярком цифровом мире, где всё переливается всеми цветами радуги.
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="info-text">
+                    Обожаю играть в <span class="highlight">Counter-Strike 2</span>. Люблю командные матчи, тактические перестрелки и, конечно же, побеждать!
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="info-text">
+                    Мой стиль — это <span class="highlight">радуга во всём</span>: от игровых скинов до оформления соцсетей. Яркие цвета делают жизнь интереснее!
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция CS2 -->
+        <section class="glass-panel cs2-section">
+            <h2 class="section-title" style="grid-column: 1 / -1;">Моя любовь к CS2</h2>
+            
+            <div class="cs2-card">
+                <div class="cs2-icon">
+                    <i class="fas fa-crosshairs"></i>
+                </div>
+                <h3 class="cs2-title">Тактический геймплей</h3>
+                <p class="cs2-desc">Обожаю стратегическую составляющую CS2, где каждая деталь важна для победы.</p>
+            </div>
+            
+            <div class="cs2-card">
+                <div class="cs2-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="cs2-title">Командная игра</h3>
+                <p class="cs2-desc">Лучше всего играть с друзьями, когда вы понимаете друг друга без слов.</p>
+            </div>
+            
+            <div class="cs2-card">
+                <div class="cs2-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3 class="cs2-title">Достижения</h3>
+                <p class="cs2-desc">Упорно стремлюсь повышать свой ранг и совершенствовать навыки игры.</p>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="glass-panel footer">
+            <p>Сайт создан специально для anx1etty</p>
+            <p>Радужный мир начинается здесь!</p>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon">
+                    <i class="fab fa-steam"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-twitch"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Добавляем интерактивности для стеклянных панелей
+        document.addEventListener('DOMContentLoaded', function() {
+            const glassPanels = document.querySelectorAll('.glass-panel');
+            
+            glassPanels.forEach(panel => {
+                // Добавляем эффект параллакса при движении мыши
+                panel.addEventListener('mousemove', (e) => {
+                    const x = e.pageX - panel.offsetLeft;
+                    const y = e.pageY - panel.offsetTop;
+                    
+                    const centerX = panel.offsetWidth / 2;
+                    const centerY = panel.offsetHeight / 2;
+                    
+                    const shadowX = (x - centerX) / 20;
+                    const shadowY = (y - centerY) / 20;
+                    
+                    panel.style.boxShadow = `
+                        ${shadowX}px ${shadowY}px 30px rgba(0, 0, 0, 0.3),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.2)
+                    `;
+                });
+                
+                // Возвращаем тень при уходе мыши
+                panel.addEventListener('mouseleave', () => {
+                    panel.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+                });
+            });
+            
+            // Анимация для ника при загрузке
+            const nickname = document.querySelector('.rainbow-nick');
+            nickname.style.opacity = '0';
+            nickname.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                nickname.style.transition = 'opacity 1s ease, transform 1s ease';
+                nickname.style.opacity = '1';
+                nickname.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Консольное сообщение
+            console.log('Привет, anx1etty! Радужный сайт загружен! 🌈');
+        });
+    </script>
+</body>
+</html>
